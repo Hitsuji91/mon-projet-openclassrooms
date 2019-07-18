@@ -1,0 +1,25 @@
+<li [ngClass]="{		'list-group-item mb-2 pb-5': true,
+						'list-group-item-success': level > 0,
+						'list-group-item-danger': level < 0 }">
+	<div class="float-right text-muted">{{ datePost | date: 'dd/MM/yyyy à HH:mm' }}</div>
+	<h3 [ngClass]="{	'text-dark': level == 0,
+						'text-success': level > 0,
+						'text-danger': level < 0 }">{{ titre }}</h3>
+
+	<div class="text-justify">{{ message }}</div>
+
+	<div class="alert float-right pr-0">
+  		<span *ngIf="level == 1">{{ level }} personne aime ça !</span>
+  		<span *ngIf="level > 1">{{ level }} personnes aiment ça !</span>
+	</div>
+
+	<div class="btn-toolbar float-left" role="toolbar">
+		<div class="btn-group">
+			<button class="btn btn-success" (click)="onLike()" type="button"><img src="assets/img/like.png" alt="Like" class="img-fluid" width="30" /></button>
+			<button class="btn btn-danger" (click)="onUnlike()" type="button"><img src="assets/img/unlike.png" alt="UnLike" class="img-fluid" width="30" /></button>
+			<button *ngIf="level < 0" class="btn btn-outline-danger" type="button" disabled><img src="assets/img/sad.png" alt="sad" class="img-fluid" width="30" /></button>
+			<button *ngIf="level > 0" class="btn btn-outline-success" type="button" disabled><img src="assets/img/smile.png" alt="sad" class="img-fluid" width="30" /></button>
+			<button *ngIf="level == 0" class="btn btn-outline-light" type="button" disabled><img src="assets/img/neutre.png" alt="neutre" class="img-fluid" width="30" /></button>
+		</div>
+	</div>
+</li>
